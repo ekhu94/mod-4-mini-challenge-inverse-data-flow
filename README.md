@@ -1,4 +1,4 @@
-# React Mini Challenge: Inverse Data Flow
+# React Mini Challenge: Forms & Inverse Data Flow
 
 ## Instructions
 
