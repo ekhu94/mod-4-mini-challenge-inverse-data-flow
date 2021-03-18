@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
 import SpiceList from './SpiceList';
 import NewSpice from './NewSpice';
@@ -79,35 +79,59 @@ const spices = [
   },
 ]
 
-// function component
-class App extends React.Component {
-  state = {
-    spices: spices
-  }
+//! function component
+const App = () => {
+  const [spicesList, setSpicesList] = useState(spices);
 
-  // TODO: use me to add a new spice when the NewSpice form submits
-  addNewSpice = newSpice => {
+  console.log(spicesList)
 
-    this.setState(prevState => {
-      const updatedSpices = [newSpice, ...prevState.spices]
+  const addNewSpice = newSpice => {
+    const updatedSpices = [newSpice, ...spicesList];
+    setSpicesList(updatedSpices);
+  };
 
-      return {
-        spices: updatedSpices
-      }
-    })
-  }
-
-  render() {
-    return (
+  return (
       <>
-        <Header spiceCount={this.state.spices.length} />
+        <Header spiceCount={spicesList.length} />
         <main>
-          <NewSpice />
-          <SpiceList spices={this.state.spices} />
+          <NewSpice addNewSpice={addNewSpice} />
+          <SpiceList spices={spicesList} />
         </main>
       </>
-    );
-  }
+  );
+    
 }
+
+
+
+//! class App extends React.Component {
+//   state = {
+//     spices: spices
+//   }
+
+//   // TODO: use me to add a new spice when the NewSpice form submits
+//   addNewSpice = newSpice => {
+
+//     this.setState(prevState => {
+//       const updatedSpices = [newSpice, ...prevState.spices]
+
+//       return {
+//         spices: updatedSpices
+//       }
+//     })
+//   }
+
+//   render() {
+//     return (
+//       <>
+//         <Header spiceCount={this.state.spices.length} />
+//         <main>
+//           <NewSpice />
+//           <SpiceList spices={this.state.spices} />
+//         </main>
+//       </>
+//     );
+//   }
+// }
 
 export default App;
